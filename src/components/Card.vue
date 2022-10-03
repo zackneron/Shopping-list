@@ -188,4 +188,15 @@ export default {
     font-size: 20px !important;
   }
 }
+
+.v-data-table__wrapper {
+  & tr td{
+    &:first-child {
+      width: 40px;
+    }
+    &:last-child {
+      text-align: end !important;
+    }
+  }
+}
 </style>
