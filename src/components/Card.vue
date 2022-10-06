@@ -13,7 +13,7 @@
             hide-details
             clearable
           ></v-text-field>
-          <small class="mb-4 px-4 isEmpty d-block" v-if="isEmpty">Please an item</small>
+          <small class="mb-4 px-4 isEmpty d-block" v-if="isEmpty">Please add an item</small>
           <v-data-table
             :headers="headers"
             :items="shoppingItems"
@@ -177,8 +177,8 @@ export default {
         this.isEmpty = true
       }
       else {
-        console.log(this.editedItem.name.length)
         this.shoppingItems.push(this.editedItem);
+        this.isEmpty = false
       }
       this.close();
     },
