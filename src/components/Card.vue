@@ -7,12 +7,13 @@
             v-model="editedItem.name"
             @click:append="save"
             @keyup.enter="save"
-            class="pt-6 pb-4 px-4 mb-4"
+            class="pt-6 px-4 pb-2"
             label="Add your shopping item here"
             append-icon="mdi-plus"
             hide-details
             clearable
           ></v-text-field>
+          <small class="mb-4 px-4 isEmpty d-block" v-if="isEmpty">Please an item</small>
           <v-data-table
             :headers="headers"
             :items="shoppingItems"
@@ -97,6 +98,7 @@ export default {
     dialog: false,
     dialogDelete: false,
     singleSelect: false,
+    isEmpty: false,
     selected: [],
     headers: [
       {
@@ -171,7 +173,11 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.shoppingItems[this.editedIndex], this.editedItem);
-      } else {
+      } else if(this.editedItem.name.length === 0){
+        this.isEmpty = true
+      }
+      else {
+        console.log(this.editedItem.name.length)
         this.shoppingItems.push(this.editedItem);
       }
       this.close();
@@ -198,5 +204,10 @@ export default {
       text-align: end !important;
     }
   }
+}
+
+.isEmpty {
+  color: red;
+  font-style: italic;
 }
 </style>
